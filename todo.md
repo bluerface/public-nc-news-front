@@ -28,7 +28,7 @@ react-router
 - Displays comments ordered by most recent  
 - **Displays time since comment was posted**, up to a week ago, after which a date is displayed  
 - Link to user profile  
-- **Can up and downvote articles (inc updating server)**  
+- **Can up and downvote comments (inc updating server)**  
 - Voting has responsive UI, limits user to one vote  
 - **Can post new comments (inc updating server)**  
 - UI signals that comment is being posted while waiting for server response  
