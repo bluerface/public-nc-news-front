@@ -26,8 +26,12 @@ function authReducer (prevState = initialState, action) {
       newState.currentUser = action.user;
       break;
 
-    case types.AUTH_USER:
+    case types.SET_USER:
       newState.currentUser = action.user;
+      break;
+
+    case types.SIGN_OUT:
+      newState.currentUser = null;
       break;
 
     default:

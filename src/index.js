@@ -28,7 +28,7 @@ const store = createStore(reducers, applyMiddleware(thunk, createLogger()));
 
 let user = localStorage.getItem('user');
 if (user) {
-  store.dispatch(actions.authUser(JSON.parse(user)));
+  store.dispatch(actions.setUser(JSON.parse(user)));
 }
 
 ReactDOM.render(

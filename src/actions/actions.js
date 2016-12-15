@@ -97,9 +97,17 @@ export function signUp (credentials) {
   };
 }
 
-export function authUser (user) {
+export function setUser (user) {
   return {
-    type: types.AUTH_USER,
+    type: types.SET_USER,
     user
+  };
+}
+
+export function signOut () {
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
+  return {
+    type: types.SIGN_OUT
   };
 }

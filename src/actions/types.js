@@ -26,4 +26,6 @@ export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 
-export const AUTH_USER = 'AUTH_USER';
+export const SET_USER = 'SET_USER';
+
+export const SIGN_OUT = 'SIGN_OUT';

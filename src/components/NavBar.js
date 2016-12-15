@@ -42,7 +42,7 @@ const NavBar = React.createClass({
             </span>
             <span>{this.props.user.name}</span>
           </Link>
-          <a href='#' className='button'>Log Out</a>
+          <a href='#' className='button' onClick={this.props.signOut}>Sign Out</a>
         </span>
       );
     }
@@ -60,6 +60,9 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchTopics: function () {
       dispatch(actions.fetchTopics());
+    },
+    signOut: function () {
+      dispatch(actions.signOut());
     }
   };
 }
