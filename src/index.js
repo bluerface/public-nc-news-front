@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
@@ -15,6 +16,7 @@ import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 
 let reducers = combineReducers({
+  form: formReducer,
   main
 });
 
