@@ -7,7 +7,6 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import main from './reducer/reducer';
 import App from './components/App';
 import ArticleList from './components/ArticleList';
 import ArticleFull from './components/ArticleFull';
@@ -15,9 +14,13 @@ import UserProfile from './components/UserProfile';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 
+import main from './reducer/reducer';
+import auth from './reducer/authReducer';
+
 let reducers = combineReducers({
   form: formReducer,
-  main
+  main,
+  auth
 });
 
 const store = createStore(reducers, applyMiddleware(thunk, createLogger()));

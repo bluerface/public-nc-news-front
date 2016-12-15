@@ -86,14 +86,13 @@ export function signUp (credentials) {
       .send(credentials)
       .end((err, res) => {
         if (err) {
-          dispatch({ type: types.SIGNUP_ERROR });
-        }
-        else {
+          dispatch({ type: types.SIGNUP_ERROR, err: {err, reason: res.body.reason} });
+        } else {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('user', res.body.user);
 
-          dispatch({ type: types.SIGNUP_SUCCESS });
+          dispatch({ type: types.SIGNUP_SUCCESS, user: res.body.user });
         }
       });
-  }
+  };
 }
