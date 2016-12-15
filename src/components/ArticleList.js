@@ -47,8 +47,8 @@ const ArticleList = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: state.articles,
-    topics: state.topics
+    articles: state.main.articles,
+    topics: state.main.topics
   };
 }
 

@@ -29,7 +29,7 @@ class UserProfile extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    currUserProfile: state.currUserProfile
+    currUserProfile: state.main.currUserProfile
   }
 }
 

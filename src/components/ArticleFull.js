@@ -44,8 +44,8 @@ class ArticleFull extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    article: state.currArticle,
-    comments: state.currArticleComments
+    article: state.main.currArticle,
+    comments: state.main.currArticleComments
   };
 }
 

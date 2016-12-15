@@ -23,7 +23,7 @@ const NavBar = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    topics: state.topics
+    topics: state.main.topics
   };
 }
 
