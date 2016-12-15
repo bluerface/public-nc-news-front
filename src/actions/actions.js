@@ -76,3 +76,24 @@ export function fetchUser (username) {
       });
   };
 }
+
+export function signUp (credentials) {
+  return (dispatch) => {
+    console.log(credentials);
+    dispatch({type: types.SIGNUP_REQUEST});
+    request
+      .post(`${ROOT.slice(0, -4)}/signup`)
+      .send(credentials)
+      .end((err, res) => {
+        if (err) {
+          dispatch({ type: types.SIGNUP_ERROR });
+        }
+        else {
+          localStorage.setItem('token', res.body.token);
+          localStorage.setItem('user', res.body.user);
+
+          dispatch({ type: types.SIGNUP_SUCCESS });
+        }
+      });
+  }
+}

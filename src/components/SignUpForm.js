@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 function validate (values) {
   let errors = {};
@@ -22,8 +24,13 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 class SignUpForm extends React.Component {
+  handleSubmit (e) {
+    e.preventDefault();
+    this.props.signUp(this.props.formData);
+  }
+
   render () {
-    const { handleSubmit } = this.props;
+    const handleSubmit = this.handleSubmit.bind(this);
     return (
       <div className='box'>
         <form onSubmit={handleSubmit}>
@@ -45,6 +52,22 @@ class SignUpForm extends React.Component {
     );
   }
 }
+
+function mapStateToProps (state) {
+  return {
+    formData: state.form.signUp.values
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    signUp: function (credentials) {
+      dispatch(actions.signUp(credentials));
+    }
+  };
+}
+
+SignUpForm = connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
 
 SignUpForm = reduxForm({
   form: 'signUp',
