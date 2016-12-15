@@ -16,6 +16,7 @@ import SignUpForm from './components/SignUpForm';
 
 import main from './reducer/reducer';
 import auth from './reducer/authReducer';
+import * as actions from './actions/actions';
 
 let reducers = combineReducers({
   form: formReducer,
@@ -24,6 +25,11 @@ let reducers = combineReducers({
 });
 
 const store = createStore(reducers, applyMiddleware(thunk, createLogger()));
+
+let user = localStorage.getItem('user');
+if (user) {
+  store.dispatch(actions.authUser(JSON.parse(user)));
+}
 
 ReactDOM.render(
   <Provider store={store}>

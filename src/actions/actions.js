@@ -89,10 +89,17 @@ export function signUp (credentials) {
           dispatch({ type: types.SIGNUP_ERROR, err: {err, reason: res.body.reason} });
         } else {
           localStorage.setItem('token', res.body.token);
-          localStorage.setItem('user', res.body.user);
+          localStorage.setItem('user', JSON.stringify(res.body.user));
 
           dispatch({ type: types.SIGNUP_SUCCESS, user: res.body.user });
         }
       });
+  };
+}
+
+export function authUser (user) {
+  return {
+    type: types.AUTH_USER,
+    user
   };
 }

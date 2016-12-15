@@ -25,3 +25,5 @@ export const FETCH_USER_ERROR = 'FETCH_USER_ERROR';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+
+export const AUTH_USER = 'AUTH_USER';
