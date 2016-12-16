@@ -29,6 +29,7 @@ class CommentForm extends React.Component {
     request
       .post(`${ROOT}/articles/${this.props.articleId}/comments`)
       .send({'comment': `${this.state.commentBody}`})
+      .set('authorisation', localStorage.getItem('token'))
       .end((error, res) => {
         if (error) {
           console.log(error);
