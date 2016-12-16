@@ -1,5 +1,6 @@
 import * as types from './types';
 import request from 'superagent';
+import { browserHistory } from 'react-router';
 
 import { ROOT } from '../../config';
 
@@ -109,6 +110,7 @@ export function signIn (credentials) {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('user', JSON.stringify(res.body.user));
           dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
+          browserHistory.push('/');
         }
       });
   };
