@@ -5,7 +5,7 @@ class SettingsPage extends React.Component {
   render () {
     return (
       <div className='box'>
-        This is a settings page for user {this.props.user.name}
+        This is a settings page for user
       </div>
     );
   }
