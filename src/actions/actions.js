@@ -119,6 +119,12 @@ export function signIn (credentials) {
   };
 }
 
+export function clearFormErrors () {
+  return {
+    type: types.CLEAR_FORM_ERRORS
+  };
+}
+
 export function setUser (user) {
   return {
     type: types.SET_USER,

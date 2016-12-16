@@ -30,6 +30,8 @@ export const SIGNIN_REQUEST = 'SIGNIN_REQUEST';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_ERROR = 'SIGNIN_ERROR';
 
+export const CLEAR_FORM_ERRORS = 'CLEAR_FORM_ERRORS';
+
 export const SET_USER = 'SET_USER';
 
 export const SIGN_OUT = 'SIGN_OUT';

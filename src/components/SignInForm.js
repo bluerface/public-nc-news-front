@@ -3,13 +3,6 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../actions/actions';
 
-function validate (values) {
-  let errors = {};
-  if (!values.username) errors.username = 'Required';
-  if (!values.password) errors.password = 'Required';
-  return errors;
-}
-
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div className='form-item'>
     <label className='label'>{label}</label>
@@ -21,29 +14,6 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 class SignInForm extends React.Component {
-  handleSubmit (e) {
-    e.preventDefault();
-    this.props.signIn(this.props.formData);
-  }
-  renderError () {
-    let { error } = this.props;
-    if (error) {
-      let message;
-
-      if (error.main.status === 401) {
-        message = 'Invalid username or password';
-      }
-      if (error.main.status === 400) {
-        message = 'Username and password are required';
-      }
-
-      return (
-        <div className='notification is-warning'>
-          {message}
-        </div>
-      );
-    }
-  }
   render () {
     const handleSubmit = this.handleSubmit.bind(this);
     return (
@@ -63,6 +33,37 @@ class SignInForm extends React.Component {
       </div>
     );
   }
+
+  handleSubmit (e) {
+    e.preventDefault();
+    this.props.signIn(this.props.formData);
+  }
+
+  renderError () {
+    let { error } = this.props;
+    if (error) {
+      let message;
+      if (error.main.status === 401) { message = 'Invalid username or password'; }
+      if (error.main.status === 400) { message = 'Username and password are required'; }
+
+      return (
+        <div className='notification is-warning'>
+          {message}
+        </div>
+      );
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.clearFormErrors();
+  }
+}
+
+function validate (values) {
+  let errors = {};
+  if (!values.username) errors.username = 'Required';
+  if (!values.password) errors.password = 'Required';
+  return errors;
 }
 
 function mapStateToProps (state) {
@@ -77,6 +78,9 @@ function mapDispatchToProps (dispatch) {
   return {
     signIn: function (credentials) {
       dispatch(actions.signIn(credentials));
+    },
+    clearFormErrors: function () {
+      dispatch(actions.clearFormErrors());
     }
   };
 }
