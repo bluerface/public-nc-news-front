@@ -1,5 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+
+function validate (values) {
+  let errors = {};
+  if (!values.username) errors.username = 'Required';
+  if (!values.password) errors.password = 'Required';
+  return errors;
+}
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div className='form-item'>
@@ -36,10 +44,23 @@ class SignInForm extends React.Component {
   }
 }
 
-// SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+function mapStateToProps (state) {
+  return {
+
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+
+  };
+}
+
+SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 
 SignInForm = reduxForm({
-  form: 'signUp'
+  form: 'signUp',
+  validate
 })(SignInForm);
 
 module.exports = SignInForm;
