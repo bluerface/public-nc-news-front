@@ -85,14 +85,16 @@ export function signUp (credentials) {
       .post(`${ROOT.slice(0, -4)}/signup`)
       .send(credentials)
       .end((err, res) => {
-        if (err) {
-          dispatch({ type: types.SIGNUP_ERROR, err: {main: err, body: res.body} });
-        } else {
-          localStorage.setItem('token', res.body.token);
-          localStorage.setItem('user', JSON.stringify(res.body.user));
+        setTimeout(function () {
+          if (err) {
+            dispatch({ type: types.SIGNUP_ERROR, err: {main: err, body: res.body} });
+          } else {
+            localStorage.setItem('token', res.body.token);
+            localStorage.setItem('user', JSON.stringify(res.body.user));
 
-          dispatch({ type: types.SIGNUP_SUCCESS, user: res.body.user });
-        }
+            dispatch({ type: types.SIGNUP_SUCCESS, user: res.body.user });
+          }
+        }, 500);
       });
   };
 }
@@ -104,17 +106,16 @@ export function signIn (credentials) {
       .post(`${ROOT.slice(0, -4)}/signin`)
       .send(credentials)
       .end((err, res) => {
-        setTimeout(
-          function () {
-            if (err) {
-              dispatch({type: types.SIGNIN_ERROR, err: {main: err, body: res.body}});
-            } else {
-              localStorage.setItem('token', res.body.token);
-              localStorage.setItem('user', JSON.stringify(res.body.user));
-              dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
-              browserHistory.push('/');
-            }
-          }, 500);
+        setTimeout(function () {
+          if (err) {
+            dispatch({type: types.SIGNIN_ERROR, err: {main: err, body: res.body}});
+          } else {
+            localStorage.setItem('token', res.body.token);
+            localStorage.setItem('user', JSON.stringify(res.body.user));
+            dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
+            browserHistory.push('/');
+          }
+        }, 500);
       });
   };
 }
