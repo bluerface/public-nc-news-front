@@ -13,6 +13,7 @@ import ArticleFull from './components/ArticleFull';
 import UserProfile from './components/UserProfile';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
+import SettingsPage from './components/SettingsPage';
 
 import main from './reducer/reducer';
 import auth from './reducer/authReducer';
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path='/users/:userName' component={UserProfile} />
         <Route path='/signin' component={SignInForm} />
         <Route path='/signup' component={SignUpForm} />
+        <Route path='/settings' component={SettingsPage} />
         <Route path='/:topicName' component={ArticleList} />
       </Route>
     </Router>

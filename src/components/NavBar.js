@@ -40,7 +40,10 @@ const NavBar = React.createClass({
             <span className='icon'>
               <img src={this.props.user.avatar_url} height='20px' />
             </span>
-            <span>{this.props.user.name}</span>
+            <span>&nbsp; {this.props.user.name}</span>
+          </Link>
+          <Link to='/settings' className='button' >
+            <i className='fa fa-cog'></i>
           </Link>
           <a href='#' className='button' onClick={this.props.signOut}>Sign Out</a>
         </span>
