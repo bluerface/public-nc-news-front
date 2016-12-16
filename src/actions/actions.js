@@ -79,19 +79,36 @@ export function fetchUser (username) {
 
 export function signUp (credentials) {
   return (dispatch) => {
-    console.log(credentials);
     dispatch({type: types.SIGNUP_REQUEST});
     request
       .post(`${ROOT.slice(0, -4)}/signup`)
       .send(credentials)
       .end((err, res) => {
         if (err) {
-          dispatch({ type: types.SIGNUP_ERROR, err: {err, reason: res.body.reason} });
+          dispatch({ type: types.SIGNUP_ERROR, err: {err, reason: res.body} });
         } else {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('user', JSON.stringify(res.body.user));
 
           dispatch({ type: types.SIGNUP_SUCCESS, user: res.body.user });
+        }
+      });
+  };
+}
+
+export function signIn (credentials) {
+  return (dispatch) => {
+    dispatch({type: types.SIGNIN_REQUEST});
+    request
+      .post(`${ROOT.slice(0, -4)}/signin`)
+      .send(credentials)
+      .end((err, res) => {
+        if (err) {
+          dispatch({type: types.SIGNIN_ERROR, err: {err, reason: res.body}});
+        } else {
+          localStorage.setItem('token', res.body.token);
+          localStorage.setItem('user', JSON.stringify(res.body.user));
+          dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
         }
       });
   };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import * as actions from '../actions/actions';
 
 function validate (values) {
   let errors = {};
@@ -22,6 +23,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 class SignInForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
+    this.props.signIn(this.props.formData);
   }
 
   render () {
@@ -46,20 +48,22 @@ class SignInForm extends React.Component {
 
 function mapStateToProps (state) {
   return {
-
+    formData: state.form.signIn.values
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-
+    signIn: function (credentials) {
+      dispatch(actions.signIn(credentials));
+    }
   };
 }
 
 SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 
 SignInForm = reduxForm({
-  form: 'signUp',
+  form: 'signIn',
   validate
 })(SignInForm);
 
