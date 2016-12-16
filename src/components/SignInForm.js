@@ -25,12 +25,28 @@ class SignInForm extends React.Component {
     e.preventDefault();
     this.props.signIn(this.props.formData);
   }
+  renderError () {
+    let { error } = this.props;
+    if (error) {
+      let message;
 
+      if (error.main.status === 401) {
+        message = 'Invalid username or password';
+      }
+
+      return (
+        <div className='notification is-warning'>
+          {message}
+        </div>
+      );
+    }
+  }
   render () {
     const handleSubmit = this.handleSubmit.bind(this);
     return (
       <div className='box'>
         <form onSubmit={handleSubmit}>
+          {this.renderError()}
           <div>
             <label htmlFor='username'>Username</label>
             <Field name='username' component={renderField} type='text' />
@@ -48,7 +64,8 @@ class SignInForm extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    formData: state.form.signIn.values
+    formData: state.form.signIn.values,
+    error: state.auth.signInError
   };
 }
 

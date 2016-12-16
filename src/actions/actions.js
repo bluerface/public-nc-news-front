@@ -86,7 +86,7 @@ export function signUp (credentials) {
       .send(credentials)
       .end((err, res) => {
         if (err) {
-          dispatch({ type: types.SIGNUP_ERROR, err: {err, reason: res.body} });
+          dispatch({ type: types.SIGNUP_ERROR, err: {main: err, body: res.body} });
         } else {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('user', JSON.stringify(res.body.user));
@@ -105,7 +105,7 @@ export function signIn (credentials) {
       .send(credentials)
       .end((err, res) => {
         if (err) {
-          dispatch({type: types.SIGNIN_ERROR, err: {err, reason: res.body}});
+          dispatch({type: types.SIGNIN_ERROR, err: {main: err, body: res.body}});
         } else {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('user', JSON.stringify(res.body.user));
