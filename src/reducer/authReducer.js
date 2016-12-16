@@ -28,6 +28,7 @@ function authReducer (prevState = initialState, action) {
 
     case types.SIGNIN_REQUEST:
       newState.isSigningIn = true;
+      newState.signInError = null;
       break;
 
     case types.SIGNIN_ERROR:

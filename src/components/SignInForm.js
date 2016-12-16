@@ -33,6 +33,9 @@ class SignInForm extends React.Component {
       if (error.main.status === 401) {
         message = 'Invalid username or password';
       }
+      if (error.main.status === 400) {
+        message = 'Username and password are required';
+      }
 
       return (
         <div className='notification is-warning'>
@@ -55,7 +58,7 @@ class SignInForm extends React.Component {
             <label htmlFor='password'>Password</label>
             <Field name='password' component={renderField} type='password' />
           </div>
-          <button type='submit' className='button is-success'>Submit</button>
+          <button type='submit' className={`button is-success ${this.props.isLoading ? 'is-loading disabled' : ''}`}>Submit</button>
         </form>
       </div>
     );
@@ -65,7 +68,8 @@ class SignInForm extends React.Component {
 function mapStateToProps (state) {
   return {
     formData: state.form.signIn.values,
-    error: state.auth.signInError
+    error: state.auth.signInError,
+    isLoading: state.auth.isSigningIn
   };
 }
 

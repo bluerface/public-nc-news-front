@@ -104,14 +104,17 @@ export function signIn (credentials) {
       .post(`${ROOT.slice(0, -4)}/signin`)
       .send(credentials)
       .end((err, res) => {
-        if (err) {
-          dispatch({type: types.SIGNIN_ERROR, err: {main: err, body: res.body}});
-        } else {
-          localStorage.setItem('token', res.body.token);
-          localStorage.setItem('user', JSON.stringify(res.body.user));
-          dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
-          browserHistory.push('/');
-        }
+        setTimeout(
+          function () {
+            if (err) {
+              dispatch({type: types.SIGNIN_ERROR, err: {main: err, body: res.body}});
+            } else {
+              localStorage.setItem('token', res.body.token);
+              localStorage.setItem('user', JSON.stringify(res.body.user));
+              dispatch({type: types.SIGNIN_SUCCESS, user: res.body.user});
+              browserHistory.push('/');
+            }
+          }, 500);
       });
   };
 }
