@@ -76,3 +76,7 @@ body {
 .subtitle:not(:last-child) {
   margin-bottom: 40px;
 }
+
+.form-item {
+  margin-bottom: 20px;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import CommentCard from './CommentCard';
 import CommentForm from './CommentForm';
 
@@ -6,7 +7,7 @@ function CommentContainer (props) {
   return (
     <div>
       <h3 className='title is-3'>Comments</h3>
-      <CommentForm articleId={props.articleId} postCommentSuccess={props.postCommentSuccess} />
+      {props.user && <CommentForm articleId={props.articleId} postCommentSuccess={props.postCommentSuccess} />}
       {
         props.comments
           .sort(function (a, b) {
@@ -20,4 +21,10 @@ function CommentContainer (props) {
   );
 }
 
-export default CommentContainer;
+function mapStateToProps (state) {
+  return {
+    user: state.auth.currentUser
+  };
+}
+
+export default connect(mapStateToProps)(CommentContainer);
