@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./spec --compilers js:babel-core/register",
     "dev": "webpack-dev-server --inline --hot --content-base public --history-api-fallback",
-    "build": "NODE_ENV='production' webpack -p && rm -rf src spec .babelrc config.js webpack.config.js",
+    "build": "NODE_ENV='production' webpack -p",
+    "trim": "rm -rf src spec .babelrc config.js webpack.config.js",
     "start": "node server.js",
     "lint": "semistandard | snazzy --verbose"
   },
